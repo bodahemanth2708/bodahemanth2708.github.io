@@ -295,7 +295,7 @@ function App() {
         </h2>
         
         <div className="contact-grid">
-          <a href="https://www.linkedin.com/in/hemanth-boda" className="contact-card" data-aos="zoom-in">
+          <a href="https://www.linkedin.com/in/hemanthboda2708" className="contact-card" data-aos="zoom-in">
             <div className="contact-icon">🔗</div>
             <h3>LinkedIn</h3>
             <p>Hemanth Boda</p>
