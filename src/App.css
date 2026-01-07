@@ -35,16 +35,16 @@ body {
   position: relative;
   z-index: 1;
   min-height: 100vh;
-  display: flex;
+  display: center;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   padding: 2rem;
   min-height: 100vh;
-  display: flex;
+  display: center;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   background-image: linear-gradient(
       rgba(0, 0, 0, 0.6),
       rgba(0, 0, 0, 0.6)
