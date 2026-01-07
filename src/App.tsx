@@ -279,7 +279,7 @@ function App() {
             <div className="timeline-content">
               <div className="company-badge">VLSI Engineer</div>
               <h3>Physical Design & Verification</h3>
-              <p className="duration">2023 - Present</p>
+              <p className="duration">PRS Semicon technologies 2025 - Present</p>
               <p>Optimizing chip designs for performance and power efficiency. Working on advanced technology nodes with complex design challenges.</p>
               <div className="achievement-bars">
                 <div className="bar-item">
@@ -289,15 +289,29 @@ function App() {
                   </div>
                 </div>
               </div>
+            <div className="timeline-marker"></div>
+              <div className="company-badge">Jr.VLSI Engineer</div>
+              <h3>RTL Coding</h3>
+              <p className="duration">PRS Semicon technologies 2024 - 2025</p>
+              <p>Developed and verified digital designs using Verilog. Contributed to multiple successful tape-outs with zero critical issues.</p>
+              <div className="achievement-bars">
+                <div className="bar-item">
+                  <span>Test Coverage</span>
+                  <div className="bar">
+                    <div style={{ width: '92%' }}></div>
+                  </div>
+                </div>
+              </div>
+            </div>
             </div>
           </div>
 
           <div className="timeline-item" data-aos="fade-right">
             <div className="timeline-marker"></div>
             <div className="timeline-content">
-              <div className="company-badge">VLSI Intern</div>
-              <h3>RTL Design & Verification</h3>
-              <p className="duration">2022 - 2023</p>
+              <div className="company-badge">Jr.VLSI Engineer</div>
+              <h3>RTL Coding</h3>
+              <p className="duration">2023 - 2025</p>
               <p>Developed and verified digital designs using Verilog. Contributed to multiple successful tape-outs with zero critical issues.</p>
               <div className="achievement-bars">
                 <div className="bar-item">
