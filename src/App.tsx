@@ -279,13 +279,14 @@ function App() {
             <div className="timeline-content">
               <div className="company-badge">VLSI Engineer</div>
               <h3>Physical Design & Verification</h3>
-              <p className="duration">2023 - Present</p>
+              <p className="duration">2025 - Present</p>
               <p>Optimizing chip designs for performance and power efficiency. Working on advanced technology nodes with complex design challenges.</p>
               <div className="achievement-bars">
                 <div className="bar-item">
                   <span>Design Closure</span>
                   <div className="bar">
                     <div style={{ width: '85%' }}></div>
+                    <div className="company-badge">VLSI Engineer</div>
                   </div>
                 </div>
               </div>
