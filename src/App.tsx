@@ -286,10 +286,10 @@ function App() {
                   <span>Design Closure</span>
                   <div className="bar">
                     <div style={{ width: '85%' }}></div>
+                    <div className="company-badge">Jr.VLSI Engineer</div>
                   </div>
                 </div>
               </div>
-              <div className="company-badge">Jr.VLSI Engineer</div>
           </div>
 
           <div className="timeline-item" data-aos="fade-right">
