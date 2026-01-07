@@ -277,7 +277,7 @@ function App() {
           <div className="timeline-item" data-aos="fade-right">
             <div className="timeline-marker"></div>
             <div className="timeline-content">
-              <div className="company-badge">VLSI Engineer</div>
+              <div className="company-badge 1">VLSI Engineer</div>
               <h3>Physical Design & Verification</h3>
               <p className="duration">2025 - Present</p>
               <p>Optimizing chip designs for performance and power efficiency. Working on advanced technology nodes with complex design challenges.</p>
@@ -286,7 +286,7 @@ function App() {
                   <span>Design Closure</span>
                   <div className="bar">
                     <div style={{ width: '85%' }}></div>
-                    <div className="company-badge">VLSI Engineer</div>
+                    <div className="company-badge 2"> Jr.VLSI Engineer</div>
                   </div>
                 </div>
               </div>
