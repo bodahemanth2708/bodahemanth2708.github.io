@@ -35,7 +35,7 @@ body {
   position: relative;
   z-index: 1;
   min-height: 100vh;
-  display: center;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -124,7 +124,7 @@ body {
 
 /* Scroll Indicator */
 .scroll-indicator {
-  position: relative;
+  position: center;
   bottom: 3rem;
   animation: bounce 2s infinite;
 }
