@@ -124,7 +124,7 @@ body {
 
 /* Scroll Indicator */
 .scroll-indicator {
-  position: absolute;
+  position: relative;
   bottom: 3rem;
   animation: bounce 2s infinite;
 }
