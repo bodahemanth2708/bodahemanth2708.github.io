@@ -127,7 +127,7 @@ function App() {
 
       <section className="hero-section">
         <div className="glitch-wrapper">
-          <h1 className="glitch-text">HEMANTH</h1>
+          <h1 className="glitch-text">HEMANTH BODA</h1>
         </div>
 
         <div className="subtitle-container">
@@ -324,6 +324,13 @@ function App() {
             <div className="contact-icon">🔗</div>
             <h3>LinkedIn</h3>
             <p>Connect with me professionally</p>
+            <div className="link-arrow">→</div>
+          </a>
+
+          <a href="https://www.youtube.com/@HemanthBoda-2708" className="contact-card" data-aos="zoom-in">
+            <div className="contact-icon">▶️</div>
+            <h3>Youtube</h3>
+            <p>VLSI Learn With Fun</p>
             <div className="link-arrow">→</div>
           </a>
 
