@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import './App.css'
 
 function App() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const canvasRef = useRef(null)
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -58,6 +58,7 @@ function App() {
 
     function animate() {
       if (!ctx || !canvas) return
+
       ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
@@ -95,6 +96,7 @@ function App() {
     }
 
     window.addEventListener('resize', handleResize)
+
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
@@ -122,22 +124,39 @@ function App() {
   return (
     <div className="app">
       <canvas ref={canvasRef} className="particle-canvas" />
-      
-      {/* Hero Section */}
+      <video autoPlay muted loop className="video-background">
+        <source src="/src/assets/krishna-bg.mp4" type="video/mp4" />
+      </video>
+
       <section className="hero-section">
-        <div className="glitch-wrapper">
-          <h1 className="glitch-text" data-text="HEMANTH BODA">HEMANTH BODA</h1>
+        <div className="hero-container">
+          {/* Left side - First Name */}
+          <div className="hero-left">
+            <div className="glitch-wrapper">
+              <h1 className="glitch-text">HEMANTH</h1>
+            </div>
+          </div>
+
+          {/* Center - Role & Tagline */}
+          <div className="hero-center">
+            <div className="subtitle-container">
+              <h2 className="role-text">VLSI ENGINEER</h2>
+              <div className="hologram-line"></div>
+            </div>
+            <p className="tagline">
+              <span className="highlight">Transforming</span> chip design concepts into{' '}
+              <span className="highlight">silicon reality</span>
+            </p>
+          </div>
+
+          {/* Right side - Last Name */}
+          <div className="hero-right">
+            <div className="glitch-wrapper">
+              <h1 className="glitch-text">BODA</h1>
+            </div>
+          </div>
         </div>
-        <div className="subtitle-container">
-          <h2 className="role-text">
-            <span className="typing-text">VLSI ENGINEER</span>
-          </h2>
-          <div className="hologram-line"></div>
-        </div>
-        <p className="tagline">
-          <span className="highlight">Transforming</span> chip design concepts into 
-          <span className="highlight"> silicon reality</span>
-        </p>
+
         <div className="scroll-indicator">
           <div className="mouse">
             <div className="wheel"></div>
@@ -150,135 +169,160 @@ function App() {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section className="section projects-section">
+      <section className="section" data-aos="fade-up">
         <h2 className="section-title">
-          <span className="title-bracket">[</span>
-          FEATURED MISSIONS
-          <span className="title-bracket">]</span>
+          <span className="title-bracket">&lt;</span>
+          Featured Work
+          <span className="title-bracket">/&gt;</span>
         </h2>
-        
+
         <div className="project-grid">
-          <div className="project-card" data-aos="fade-up">
+          <a href="https://github.com/bodahemanth2708" className="project-card" data-aos="zoom-in">
             <div className="card-glow"></div>
             <div className="card-content">
               <div className="project-number">01</div>
-              <h3>Digital Circuit Synthesis</h3>
+              <h3>Chip Design Automation</h3>
               <div className="tech-bar">
-                <div className="tech-progress" style={{width: '85%'}}></div>
+                <div className="tech-progress"></div>
               </div>
-              <p>Optimized RTL-to-gate synthesis flow achieving <span className="stat">15% area reduction</span></p>
+              <p>Advanced RTL design methodologies</p>
               <div className="project-tags">
-                <span className="tag">RTL</span>
-                <span className="tag">SYNTHESIS</span>
-                <span className="tag">OPTIMIZATION</span>
+                <span className="tag">Verilog</span>
+                <span className="tag">VLSI</span>
+                <span className="tag">EDA</span>
               </div>
             </div>
-          </div>
+          </a>
 
-          <div className="project-card" data-aos="fade-up" data-aos-delay="100">
+          <a href="https://github.com/bodahemanth2708" className="project-card" data-aos="zoom-in">
             <div className="card-glow"></div>
             <div className="card-content">
               <div className="project-number">02</div>
-              <h3>Static Timing Analysis</h3>
+              <h3>Signal Integrity Analysis</h3>
               <div className="tech-bar">
-                <div className="tech-progress" style={{width: '92%'}}></div>
+                <div className="tech-progress"></div>
               </div>
-              <p>Custom STA scripts for <span className="stat">multi-corner multi-mode</span> timing closure</p>
+              <p>Power and timing optimization</p>
               <div className="project-tags">
-                <span className="tag">TIMING</span>
-                <span className="tag">ANALYSIS</span>
-                <span className="tag">SCRIPTS</span>
+                <span className="tag">Python</span>
+                <span className="tag">SPICE</span>
+                <span className="tag">Analysis</span>
               </div>
             </div>
-          </div>
+          </a>
 
-          <div className="project-card" data-aos="fade-up" data-aos-delay="200">
+          <a href="https://github.com/bodahemanth2708" className="project-card" data-aos="zoom-in">
             <div className="card-glow"></div>
             <div className="card-content">
               <div className="project-number">03</div>
               <h3>Physical Design Flow</h3>
               <div className="tech-bar">
-                <div className="tech-progress" style={{width: '88%'}}></div>
+                <div className="tech-progress"></div>
               </div>
-              <p>Complete PD implementation from <span className="stat">floorplan to signoff</span></p>
+              <p>Place & Route optimization</p>
               <div className="project-tags">
-                <span className="tag">PHYSICAL</span>
-                <span className="tag">LAYOUT</span>
-                <span className="tag">SIGNOFF</span>
+                <span className="tag">Cadence</span>
+                <span className="tag">P&R</span>
+                <span className="tag">Layout</span>
               </div>
             </div>
-          </div>
+          </a>
         </div>
       </section>
 
-      {/* Skills Section */}
-      <section className="section skills-section">
+      <section className="section" data-aos="fade-up">
         <h2 className="section-title">
-          <span className="title-bracket">[</span>
-          TECHNICAL ARSENAL
-          <span className="title-bracket">]</span>
+          <span className="title-bracket">&lt;</span>
+          Tech Stack
+          <span className="title-bracket">/&gt;</span>
         </h2>
-        
+
         <div className="skills-grid">
           <div className="skill-category" data-aos="flip-left">
-            <div className="skill-icon">⚡</div>
-            <h3>Design Tools</h3>
+            <div className="skill-icon">⚙️</div>
+            <h3>Hardware Design</h3>
             <div className="skill-items">
-              <span>Cadence</span>
-              <span>Synopsys</span>
-              <span>Vivado</span>
-              <span>Quartus</span>
+              <span>Verilog/SystemVerilog</span>
+              <span>VHDL</span>
+              <span>RTL Design</span>
+              <span>Synthesis</span>
             </div>
           </div>
 
-          <div className="skill-category" data-aos="flip-left" data-aos-delay="100">
-            <div className="skill-icon">💻</div>
-            <h3>Languages</h3>
+          <div className="skill-category" data-aos="flip-left">
+            <div className="skill-icon">🔧</div>
+            <h3>EDA Tools</h3>
             <div className="skill-items">
-              <span>Verilog</span>
-              <span>SystemVerilog</span>
+              <span>Cadence Virtuoso</span>
+              <span>Synopsys DC</span>
+              <span>Mentor Graphics</span>
+              <span>ModelSim</span>
+            </div>
+          </div>
+
+          <div className="skill-category" data-aos="flip-left">
+            <div className="skill-icon">🚀</div>
+            <h3>Programming</h3>
+            <div className="skill-items">
               <span>Python</span>
-              <span>TCL</span>
+              <span>C/C++</span>
+              <span>JavaScript</span>
+              <span>React</span>
             </div>
           </div>
 
-          <div className="skill-category" data-aos="flip-left" data-aos-delay="200">
-            <div className="skill-icon">🎯</div>
-            <h3>Specialization</h3>
+          <div className="skill-category" data-aos="flip-left">
+            <div className="skill-icon">📊</div>
+            <h3>Analysis</h3>
             <div className="skill-items">
-              <span>Physical Design</span>
-              <span>STA</span>
+              <span>Static Timing</span>
               <span>Power Analysis</span>
+              <span>SI Analysis</span>
+              <span>SPICE Simulation</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Experience Section */}
-      <section className="section experience-section">
+      <section className="section" data-aos="fade-up">
         <h2 className="section-title">
-          <span className="title-bracket">[</span>
-          EXPERIENCE LOG
-          <span className="title-bracket">]</span>
+          <span className="title-bracket">&lt;</span>
+          Experience
+          <span className="title-bracket">/&gt;</span>
         </h2>
-        
+
         <div className="timeline">
           <div className="timeline-item" data-aos="fade-right">
             <div className="timeline-marker"></div>
             <div className="timeline-content">
-              <div className="company-badge">PRS SEMICON TECHNOLOGIES</div>
-              <h3>VLSI Engineer</h3>
-              <p className="duration">Current Mission</p>
-              <p>Working on synthesis and physical design projects</p>
+              <div className="company-badge">VLSI Engineer</div>
+              <h3>Physical Design & Verification</h3>
+              <p className="duration">2023 - Present</p>
+              <p>Optimizing chip designs for performance and power efficiency. Working on advanced technology nodes with complex design challenges.</p>
               <div className="achievement-bars">
                 <div className="bar-item">
-                  <span>Synthesis</span>
-                  <div className="bar"><div style={{width: '90%'}}></div></div>
+                  <span>Design Closure</span>
+                  <div className="bar">
+                    <div style={{ width: '85%' }}></div>
+                  </div>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="timeline-item" data-aos="fade-right">
+            <div className="timeline-marker"></div>
+            <div className="timeline-content">
+              <div className="company-badge">VLSI Intern</div>
+              <h3>RTL Design & Verification</h3>
+              <p className="duration">2022 - 2023</p>
+              <p>Developed and verified digital designs using Verilog. Contributed to multiple successful tape-outs with zero critical issues.</p>
+              <div className="achievement-bars">
                 <div className="bar-item">
-                  <span>Physical Design</span>
-                  <div className="bar"><div style={{width: '85%'}}></div></div>
+                  <span>Test Coverage</span>
+                  <div className="bar">
+                    <div style={{ width: '92%' }}></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -286,34 +330,31 @@ function App() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="section contact-section">
+      <section className="section" data-aos="fade-up">
         <h2 className="section-title">
-          <span className="title-bracket">[</span>
-          INITIATE CONTACT
-          <span className="title-bracket">]</span>
+          <span className="title-bracket">&lt;</span>
+          Get In Touch
+          <span className="title-bracket">/&gt;</span>
         </h2>
-        
+
         <div className="contact-grid">
           <a href="https://www.linkedin.com/in/hemanthboda2708" className="contact-card" data-aos="zoom-in">
             <div className="contact-icon">🔗</div>
             <h3>LinkedIn</h3>
-            <p>Hemanth Boda</p>
+            <p>Connect with me professionally</p>
             <div className="link-arrow">→</div>
           </a>
 
-          <a href="https://github.com/bodahemanth2708" className="contact-card" data-aos="zoom-in" data-aos-delay="100">
-            <div className="contact-icon">💾</div>
+          <a href="https://github.com/bodahemanth2708" className="contact-card" data-aos="zoom-in">
+            <div className="contact-icon">🌐</div>
             <h3>GitHub</h3>
-            <p>bodahemanth2708</p>
+            <p>Check out my projects</p>
             <div className="link-arrow">→</div>
           </a>
         </div>
 
         <div className="footer-message">
-          <p className="glowing-text">
-            Building the future of semiconductor design, one chip at a time.
-          </p>
+          <p className="glowing-text">Building the future of semiconductor design, one chip at a time.</p>
         </div>
       </section>
     </div>
