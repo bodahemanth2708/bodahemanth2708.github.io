@@ -593,8 +593,7 @@ body {
   .timeline {
     padding-left: 30px;
   }
-}
-.hero-bg {
+  .hero-bg {
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -607,3 +606,5 @@ body {
   background-size: cover;
   background-position: center;
 }
+}
+
