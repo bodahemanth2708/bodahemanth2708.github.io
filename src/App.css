@@ -595,3 +595,70 @@ body {
   }
 }
 
+
+
+/* Video Background */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+/* Hero Container Layout */
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1400px;
+  gap: 3rem;
+}
+
+.hero-left {
+  flex: 1;
+  text-align: right;
+}
+
+.hero-center {
+  flex: 1;
+  text-align: center;
+}
+
+.hero-right {
+  flex: 1;
+  text-align: left;
+}
+
+/* Adjust glitch text for sides */
+.hero-left .glitch-text,
+.hero-right .glitch-text {
+  font-size: clamp(2rem, 6vw, 5rem);
+}
+
+/* Responsive Hero Layout */
+@media (max-width: 1024px) {
+  .hero-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .hero-left,
+  .hero-right {
+    text-align: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-container {
+    gap: 1.5rem;
+  }
+
+  .glitch-text {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+  }
+}
