@@ -162,7 +162,7 @@ function App() {
           <a href="https://github.com/bodahemanth2708" className="project-card" data-aos="zoom-in">
             <div className="card-glow"></div>
             <div className="card-content">
-              <div className="project-number">01</div>
+              <div className="project-number">02</div>
               <h3>Chip Design Automation</h3>
               <div className="tech-bar">
                 <div className="tech-progress"></div>
@@ -179,16 +179,16 @@ function App() {
           <a href="https://github.com/bodahemanth2708" className="project-card" data-aos="zoom-in">
             <div className="card-glow"></div>
             <div className="card-content">
-              <div className="project-number">02</div>
-              <h3>Signal Integrity Analysis</h3>
+              <div className="project-number">01</div>
+              <h3>VLSI CONTENT CREATION</h3>
               <div className="tech-bar">
                 <div className="tech-progress"></div>
               </div>
-              <p>Power and timing optimization</p>
+              <p>PTeachibg complex topic in a funny and easy way</p>
               <div className="project-tags">
-                <span className="tag">Python</span>
-                <span className="tag">SPICE</span>
-                <span className="tag">Analysis</span>
+                <span className="tag">VLSI LEARN WITH FUN</span>
+                <span className="tag">posts in Linkedin</span>
+                <span className="tag">Explanation in Youtube</span>
               </div>
             </div>
           </a>
