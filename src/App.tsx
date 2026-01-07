@@ -124,38 +124,20 @@ function App() {
   return (
     <div className="app">
       <canvas ref={canvasRef} className="particle-canvas" />
-      <video autoPlay muted loop className="video-background">
-        <source src="/src/assets/krishna-bg.mp4" type="video/mp4" />
-      </video>
 
       <section className="hero-section">
-        <div className="hero-container">
-          {/* Left side - First Name */}
-          <div className="hero-left">
-            <div className="glitch-wrapper">
-              <h1 className="glitch-text">HEMANTH</h1>
-            </div>
-          </div>
-
-          {/* Center - Role & Tagline */}
-          <div className="hero-center">
-            <div className="subtitle-container">
-              <h2 className="role-text">VLSI ENGINEER</h2>
-              <div className="hologram-line"></div>
-            </div>
-            <p className="tagline">
-              <span className="highlight">Transforming</span> chip design concepts into{' '}
-              <span className="highlight">silicon reality</span>
-            </p>
-          </div>
-
-          {/* Right side - Last Name */}
-          <div className="hero-right">
-            <div className="glitch-wrapper">
-              <h1 className="glitch-text">BODA</h1>
-            </div>
-          </div>
+        <div className="glitch-wrapper">
+          <h1 className="glitch-text">HEMANTH</h1>
         </div>
+
+        <div className="subtitle-container">
+          <h2 className="role-text">VLSI ENGINEER</h2>
+          <div className="hologram-line"></div>
+        </div>
+        <p className="tagline">
+          <span className="highlight">Transforming</span> complex chip design into{' '}
+          <span className="highlight">elegant silicon</span>
+        </p>
 
         <div className="scroll-indicator">
           <div className="mouse">
