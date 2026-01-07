@@ -290,26 +290,25 @@ function App() {
                 </div>
               </div>
           </div>
-
-          <div className="timeline-item" data-aos="fade-right">
-            <div className="timeline-marker"></div>
-            <div className="timeline-content">
-              <div className="company-badge">Jr.VLSI Engineer</div>
-              <h3>RTL Coding</h3>
-              <p className="duration">2023 - 2025</p>
-              <p>Developed and verified digital designs using Verilog. Contributed to multiple successful tape-outs with zero critical issues.</p>
-              <div className="achievement-bars">
-                <div className="bar-item">
+            <div className="timeline-item" data-aos="fade-right">
+              <div className="timeline-marker"></div>
+              <div className="timeline-content">
+                <div className="company-badge">Jr.VLSI Engineer</div>
+                <h3>RTL Coding</h3>
+                <p className="duration">2023 - 2025</p>
+                <p>Developed and verified digital designs using Verilog. Contributed to multiple successful tape-outs with zero critical issues.</p>
+                <div className="achievement-bars">
+                  <div className="bar-item">
                   <span>Test Coverage</span>
-                  <div className="bar">
+                    <div className="bar">
                     <div style={{ width: '92%' }}></div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
       <section className="section" data-aos="fade-up">
         <h2 className="section-title">
