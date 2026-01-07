@@ -594,3 +594,16 @@ body {
     padding-left: 30px;
   }
 }
+.hero-bg {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
+    ),
+    url("/src/assets/krishna.jpeg");
+  background-size: cover;
+  background-position: center;
+}
