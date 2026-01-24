@@ -124,7 +124,7 @@ body {
 
 /* Scroll Indicator */
 .scroll-indicator {
-  position: center;
+  position: absolute;
   bottom: 3rem;
   animation: bounce 2s infinite;
 }
@@ -184,6 +184,7 @@ body {
   padding: 5rem 2rem;
   max-width: 1400px;
   margin: 0 auto;
+    text-align: center;
 }
 
 .section-title {
@@ -208,6 +209,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
+    justify-items: center;
 }
 
 .project-card {
@@ -314,6 +316,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
+    justify-items: center;
 }
 
 .skill-category {
@@ -474,6 +477,7 @@ body {
   gap: 2rem;
   max-width: 800px;
   margin: 0 auto 3rem;
+    justify-items: center;
 }
 
 .contact-card {
