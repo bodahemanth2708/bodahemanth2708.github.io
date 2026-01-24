@@ -184,9 +184,10 @@ body {
   padding: 5rem 2rem;
   max-width: 1400px;
   margin: 0 auto;
-    }
+}
 
 .section-title {
+  font-family: 'Orbitron', sans-serif;
   font-size: clamp(2rem, 5vw, 3.5rem);
   text-align: center;
   margin-bottom: 4rem;
@@ -207,10 +208,10 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-    justify-items: center;
 }
 
 .project-card {
+  position: relative;
   background: linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%);
   border: 1px solid rgba(0, 255, 255, 0.3);
   border-radius: 10px;
@@ -313,10 +314,10 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
-    justify-items: center;
 }
 
 .skill-category {
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%);
   border: 1px solid rgba(0, 255, 255, 0.3);
   border-radius: 10px;
   padding: 2rem;
@@ -473,10 +474,10 @@ body {
   gap: 2rem;
   max-width: 800px;
   margin: 0 auto 3rem;
-    justify-items: center;
 }
 
 .contact-card {
+  position: relative;
   background: linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%);
   border: 1px solid rgba(0, 255, 255, 0.3);
   border-radius: 10px;
