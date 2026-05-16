@@ -1,8 +1,75 @@
 import { useEffect, useRef } from 'react'
 import './App.css'
 
+const projects = [
+  {
+    number: '01',
+    title: 'Physical Design Flow',
+    summary:
+      'Focused on floorplanning, power planning, placement, CTS, routing, timing closure, and signoff-ready layout quality.',
+    tags: ['Floorplan', 'P&R', 'STA', 'DRC/LVS'],
+  },
+  {
+    number: '02',
+    title: 'RTL to GDSII Practice',
+    summary:
+      'Building confidence across synthesis, constraints, timing reports, area tradeoffs, and backend implementation steps.',
+    tags: ['Verilog', 'Synthesis', 'SDC', 'GDSII'],
+  },
+  {
+    number: '03',
+    title: 'VLSI Learn With Fun',
+    summary:
+      'Creating simple LinkedIn and YouTube explanations that make VLSI concepts easier for students and beginners.',
+    tags: ['LinkedIn', 'YouTube', 'Teaching', 'VLSI'],
+  },
+]
+
+const skillGroups = [
+  {
+    title: 'Physical Design',
+    items: ['Floorplanning', 'Placement', 'Clock Tree Synthesis', 'Routing', 'ECO awareness'],
+  },
+  {
+    title: 'Timing & Signoff',
+    items: ['Static Timing Analysis', 'Setup/Hold debug', 'Power intent basics', 'IR/EM awareness'],
+  },
+  {
+    title: 'EDA & Design',
+    items: ['Cadence flow exposure', 'Synopsys basics', 'Verilog/SystemVerilog', 'Linux workflow'],
+  },
+  {
+    title: 'Automation',
+    items: ['Python scripting', 'Tcl basics', 'Report reading', 'Design documentation'],
+  },
+]
+
+const experience = [
+  {
+    role: 'Physical Design Engineer',
+    title: 'Backend VLSI Implementation',
+    duration: '2025 - Present',
+    description:
+      'Working toward clean physical implementation with attention to timing, congestion, power planning, and signoff checks.',
+  },
+  {
+    role: 'Jr. VLSI Engineer',
+    title: 'RTL, Verification & PD Fundamentals',
+    duration: '2023 - 2025',
+    description:
+      'Built a strong base in digital design, verification concepts, synthesis flow, and physical design fundamentals.',
+  },
+  {
+    role: 'VLSI Learner & Creator',
+    title: 'Technical Content',
+    duration: 'Ongoing',
+    description:
+      'Explaining chip design concepts in a practical, friendly way through posts and short-form educational content.',
+  },
+]
+
 function App() {
-  const canvasRef = useRef(null)
+  const canvasRef = useRef<HTMLCanvasElement | null>(null)
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -11,342 +78,255 @@ function App() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
+    let animationFrame = 0
+    const particles = Array.from({ length: 85 }, () => ({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      size: Math.random() * 1.8 + 0.6,
+      speedX: Math.random() * 0.35 - 0.175,
+      speedY: Math.random() * 0.35 - 0.175,
+      opacity: Math.random() * 0.45 + 0.25,
+    }))
 
-    // Particle system for sci-fi effect
-    class Particle {
-      x: number
-      y: number
-      size: number
-      speedX: number
-      speedY: number
-      opacity: number
+    const resize = () => {
+      const ratio = window.devicePixelRatio || 1
+      canvas.width = window.innerWidth * ratio
+      canvas.height = window.innerHeight * ratio
+      canvas.style.width = `${window.innerWidth}px`
+      canvas.style.height = `${window.innerHeight}px`
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0)
+    }
 
-      constructor() {
-        this.x = Math.random() * canvas.width
-        this.y = Math.random() * canvas.height
-        this.size = Math.random() * 2 + 0.5
-        this.speedX = Math.random() * 0.5 - 0.25
-        this.speedY = Math.random() * 0.5 - 0.25
-        this.opacity = Math.random() * 0.5 + 0.3
-      }
+    const animate = () => {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
+      ctx.fillStyle = 'rgba(2, 8, 23, 0.46)'
+      ctx.fillRect(0, 0, window.innerWidth, window.innerHeight)
 
-      update() {
-        this.x += this.speedX
-        this.y += this.speedY
+      particles.forEach((particle, index) => {
+        particle.x += particle.speedX
+        particle.y += particle.speedY
 
-        if (this.x > canvas.width) this.x = 0
-        if (this.x < 0) this.x = canvas.width
-        if (this.y > canvas.height) this.y = 0
-        if (this.y < 0) this.y = canvas.height
-      }
+        if (particle.x > window.innerWidth) particle.x = 0
+        if (particle.x < 0) particle.x = window.innerWidth
+        if (particle.y > window.innerHeight) particle.y = 0
+        if (particle.y < 0) particle.y = window.innerHeight
 
-      draw() {
-        if (!ctx) return
-        ctx.fillStyle = `rgba(0, 255, 255, ${this.opacity})`
+        ctx.fillStyle = `rgba(45, 212, 191, ${particle.opacity})`
         ctx.beginPath()
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
         ctx.fill()
-      }
-    }
 
-    const particles: Particle[] = []
-    for (let i = 0; i < 100; i++) {
-      particles.push(new Particle())
-    }
-
-    function animate() {
-      if (!ctx || !canvas) return
-
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-      particles.forEach(particle => {
-        particle.update()
-        particle.draw()
-      })
-
-      // Draw connections
-      particles.forEach((p1, i) => {
-        particles.slice(i + 1).forEach(p2 => {
-          const dx = p1.x - p2.x
-          const dy = p1.y - p2.y
+        particles.slice(index + 1).forEach((nextParticle) => {
+          const dx = particle.x - nextParticle.x
+          const dy = particle.y - nextParticle.y
           const distance = Math.sqrt(dx * dx + dy * dy)
 
-          if (distance < 100) {
-            ctx.strokeStyle = `rgba(0, 255, 255, ${0.2 * (1 - distance / 100)})`
-            ctx.lineWidth = 0.5
+          if (distance < 92) {
+            ctx.strokeStyle = `rgba(56, 189, 248, ${0.16 * (1 - distance / 92)})`
+            ctx.lineWidth = 0.7
             ctx.beginPath()
-            ctx.moveTo(p1.x, p1.y)
-            ctx.lineTo(p2.x, p2.y)
+            ctx.moveTo(particle.x, particle.y)
+            ctx.lineTo(nextParticle.x, nextParticle.y)
             ctx.stroke()
           }
         })
       })
 
-      requestAnimationFrame(animate)
+      animationFrame = requestAnimationFrame(animate)
     }
 
+    resize()
     animate()
+    window.addEventListener('resize', resize)
 
-    const handleResize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+    return () => {
+      cancelAnimationFrame(animationFrame)
+      window.removeEventListener('resize', resize)
     }
-
-    window.addEventListener('resize', handleResize)
-
-    return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  // Scroll animation observer
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('aos-animate')
-          }
+          if (entry.isIntersecting) entry.target.classList.add('aos-animate')
         })
       },
-      { threshold: 0.1 }
+      { threshold: 0.12 }
     )
 
     const elements = document.querySelectorAll('[data-aos]')
-    elements.forEach((el) => observer.observe(el))
+    elements.forEach((element) => observer.observe(element))
 
-    return () => {
-      elements.forEach((el) => observer.unobserve(el))
-    }
+    return () => elements.forEach((element) => observer.unobserve(element))
   }, [])
 
   return (
     <div className="app">
-      <canvas ref={canvasRef} className="particle-canvas" />
+      <canvas ref={canvasRef} className="particle-canvas" aria-hidden="true" />
 
-      <section className="hero-section">
-        <div className="glitch-wrapper">
-          <h1 className="glitch-text">HEMANTH BODA</h1>
-        </div>
+      <header className="site-header">
+        <a href="#top" className="brand-mark" aria-label="Hemanth Boda home">
+          HB
+        </a>
+        <nav aria-label="Portfolio navigation">
+          <a href="#work">Work</a>
+          <a href="#skills">Skills</a>
+          <a href="#experience">Experience</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
 
-        <div className="subtitle-container">
-          <h2 className="role-text">VLSI ENGINEER</h2>
-          <div className="hologram-line"></div>
-        </div>
-        <p className="tagline">
-          <span className="highlight">Transforming</span> complex chip design into{' '}
-          <span className="highlight">elegant silicon</span>
-        </p>
+      <main id="top">
+        <section className="hero-section">
+          <div className="hero-copy" data-aos="fade-up">
+            <p className="eyebrow">Physical Design Engineer</p>
+            <h1>Hemanth Boda</h1>
+            <p className="hero-lede">
+              I work on the backend side of chip design, turning digital logic into manufacturable
+              silicon through physical design flow, timing closure, and signoff-focused thinking.
+            </p>
 
-        <div className="scroll-indicator">
-          <div className="mouse">
-            <div className="wheel"></div>
-          </div>
-          <div className="arrow-down">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-      </section>
-
-      <section className="section" data-aos="fade-up">
-        <h2 className="section-title">
-          <span className="title-bracket">&lt;</span>
-          Featured Work
-          <span className="title-bracket">/&gt;</span>
-        </h2>
-
-        <div className="project-grid">
-          <a href="https://github.com/bodahemanth2708" className="project-card" data-aos="zoom-in">
-            <div className="card-glow"></div>
-            <div className="card-content">
-              <div className="project-number">02</div>
-              <h3>Chip Design Automation</h3>
-              <div className="tech-bar">
-                <div className="tech-progress"></div>
-              </div>
-              <p>Advanced RTL design methodologies</p>
-              <div className="project-tags">
-                <span className="tag">Verilog</span>
-                <span className="tag">VLSI</span>
-                <span className="tag">EDA</span>
-              </div>
+            <div className="hero-actions">
+              <a href="#work" className="primary-action">
+                View Work
+              </a>
+              <a href="https://www.linkedin.com/in/hemanthboda2708" className="secondary-action">
+                LinkedIn
+              </a>
             </div>
-          </a>
 
-          <a href="https://github.com/bodahemanth2708" className="project-card" data-aos="zoom-in">
-            <div className="card-glow"></div>
-            <div className="card-content">
-              <div className="project-number">01</div>
-              <h3>VLSI CONTENT CREATION</h3>
-              <div className="tech-bar">
-                <div className="tech-progress"></div>
+            <div className="metrics" aria-label="Profile highlights">
+              <div>
+                <strong>RTL-GDSII</strong>
+                <span>Flow focus</span>
               </div>
-              <p>PTeachibg complex topic in a funny and easy way</p>
-              <div className="project-tags">
-                <span className="tag">VLSI LEARN WITH FUN</span>
-                <span className="tag">posts in Linkedin</span>
-                <span className="tag">Explanation in Youtube</span>
+              <div>
+                <strong>STA</strong>
+                <span>Timing closure</span>
               </div>
-            </div>
-          </a>
-
-          <a href="https://github.com/bodahemanth2708" className="project-card" data-aos="zoom-in">
-            <div className="card-glow"></div>
-            <div className="card-content">
-              <div className="project-number">03</div>
-              <h3>Physical Design Flow</h3>
-              <div className="tech-bar">
-                <div className="tech-progress"></div>
+              <div>
+                <strong>P&R</strong>
+                <span>Backend design</span>
               </div>
-              <p>Place & Route optimization</p>
-              <div className="project-tags">
-                <span className="tag">Cadence</span>
-                <span className="tag">P&R</span>
-                <span className="tag">Layout</span>
-              </div>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <section className="section" data-aos="fade-up">
-        <h2 className="section-title">
-          <span className="title-bracket">&lt;</span>
-          Tech Stack
-          <span className="title-bracket">/&gt;</span>
-        </h2>
-
-        <div className="skills-grid">
-          <div className="skill-category" data-aos="flip-left">
-            <div className="skill-icon">⚙️</div>
-            <h3>Hardware Design</h3>
-            <div className="skill-items">
-              <span>Verilog/SystemVerilog</span>
-              <span>VHDL</span>
-              <span>RTL Design</span>
-              <span>Synthesis</span>
             </div>
           </div>
 
-          <div className="skill-category" data-aos="flip-left">
-            <div className="skill-icon">🔧</div>
-            <h3>EDA Tools</h3>
-            <div className="skill-items">
-              <span>Cadence Virtuoso</span>
-              <span>Synopsys DC</span>
-              <span>Mentor Graphics</span>
-              <span>ModelSim</span>
+          <div className="profile-panel" data-aos="zoom-in" aria-label="Physical design profile">
+            <div className="chip-shell">
+              <div className="chip-core">
+                <span>HB</span>
+                <small>PD Engineer</small>
+              </div>
+              <div className="route route-a"></div>
+              <div className="route route-b"></div>
+              <div className="route route-c"></div>
+              <div className="pins pins-top"></div>
+              <div className="pins pins-right"></div>
+              <div className="pins pins-bottom"></div>
+              <div className="pins pins-left"></div>
+            </div>
+            <div className="profile-note">
+              <span>Backend implementation</span>
+              <strong>Floorplan . Place . CTS . Route . Signoff</strong>
             </div>
           </div>
+        </section>
 
-          <div className="skill-category" data-aos="flip-left">
-            <div className="skill-icon">🚀</div>
-            <h3>Programming</h3>
-            <div className="skill-items">
-              <span>Python</span>
-              <span>C/C++</span>
-              <span>JavaScript</span>
-              <span>React</span>
-            </div>
+        <section className="section" id="work" data-aos="fade-up">
+          <div className="section-heading">
+            <p className="eyebrow">Featured Work</p>
+            <h2>Semiconductor projects and learning tracks</h2>
           </div>
 
-          <div className="skill-category" data-aos="flip-left">
-            <div className="skill-icon">📊</div>
-            <h3>Analysis</h3>
-            <div className="skill-items">
-              <span>Static Timing</span>
-              <span>Power Analysis</span>
-              <span>SI Analysis</span>
-              <span>SPICE Simulation</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section" data-aos="fade-up">
-        <h2 className="section-title">
-          <span className="title-bracket">&lt;</span>
-          Experience
-          <span className="title-bracket">/&gt;</span>
-        </h2>
-
-        <div className="timeline">
-          <div className="timeline-item" data-aos="fade-right">
-            <div className="timeline-marker"></div>
-            <div className="timeline-content">
-              <div className="company-badge 1">VLSI Engineer</div>
-              <h3>Physical Design & Verification</h3>
-              <p className="duration">2025 - Present</p>
-              <p>Optimizing chip designs for performance and power efficiency. Working on advanced technology nodes with complex design challenges.</p>
-              <div className="achievement-bars">
-                <div className="bar-item">
-                  <span>Design Closure</span>
-                  <div className="bar">
-                    <div style={{ width: '85%' }}></div>
-                    <div className="company-badge 2"> Jr.VLSI Engineer</div>
-                  </div>
+          <div className="project-grid">
+            {projects.map((project) => (
+              <a href="https://github.com/bodahemanth2708" className="project-card" key={project.title}>
+                <span className="project-number">{project.number}</span>
+                <h3>{project.title}</h3>
+                <p>{project.summary}</p>
+                <div className="project-tags">
+                  {project.tags.map((tag) => (
+                    <span className="tag" key={tag}>
+                      {tag}
+                    </span>
+                  ))}
                 </div>
-              </div>
-            </div>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section className="section" id="skills" data-aos="fade-up">
+          <div className="section-heading">
+            <p className="eyebrow">Tech Stack</p>
+            <h2>Skills shaped for physical design work</h2>
           </div>
 
-          <div className="timeline-item" data-aos="fade-right">
-            <div className="timeline-marker"></div>
-            <div className="timeline-content">
-              <div className="company-badge">VLSI Intern</div>
-              <h3>RTL Design & Verification</h3>
-              <p className="duration">2022 - 2023</p>
-              <p>Developed and verified digital designs using Verilog. Contributed to multiple successful tape-outs with zero critical issues.</p>
-              <div className="achievement-bars">
-                <div className="bar-item">
-                  <span>Test Coverage</span>
-                  <div className="bar">
-                    <div style={{ width: '92%' }}></div>
-                  </div>
+          <div className="skills-grid">
+            {skillGroups.map((group) => (
+              <article className="skill-category" key={group.title}>
+                <h3>{group.title}</h3>
+                <div className="skill-items">
+                  {group.items.map((item) => (
+                    <span key={item}>{item}</span>
+                  ))}
                 </div>
-              </div>
-            </div>
+              </article>
+            ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="section" data-aos="fade-up">
-        <h2 className="section-title">
-          <span className="title-bracket">&lt;</span>
-          Get In Touch
-          <span className="title-bracket">/&gt;</span>
-        </h2>
+        <section className="section" id="experience" data-aos="fade-up">
+          <div className="section-heading">
+            <p className="eyebrow">Experience</p>
+            <h2>Growing across VLSI implementation and communication</h2>
+          </div>
 
-        <div className="contact-grid">
-          <a href="https://www.linkedin.com/in/hemanthboda2708" className="contact-card" data-aos="zoom-in">
-            <div className="contact-icon">🔗</div>
-            <h3>LinkedIn</h3>
-            <p>Connect with me professionally</p>
-            <div className="link-arrow">→</div>
-          </a>
+          <div className="timeline">
+            {experience.map((item) => (
+              <article className="timeline-item" key={item.role}>
+                <div className="timeline-marker"></div>
+                <div className="timeline-content">
+                  <div className="company-badge">{item.role}</div>
+                  <h3>{item.title}</h3>
+                  <p className="duration">{item.duration}</p>
+                  <p>{item.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
 
-          <a href="https://www.youtube.com/@HemanthBoda-2708" className="contact-card" data-aos="zoom-in">
-            <div className="contact-icon">▶️</div>
-            <h3>Youtube</h3>
-            <p>VLSI Learn With Fun</p>
-            <div className="link-arrow">→</div>
-          </a>
+        <section className="section contact-section" id="contact" data-aos="fade-up">
+          <div className="section-heading">
+            <p className="eyebrow">Get In Touch</p>
+            <h2>Let us connect around VLSI, PD flow, and learning</h2>
+          </div>
 
-          <a href="https://github.com/bodahemanth2708" className="contact-card" data-aos="zoom-in">
-            <div className="contact-icon">🌐</div>
-            <h3>GitHub</h3>
-            <p>Check out my projects</p>
-            <div className="link-arrow">→</div>
-          </a>
-        </div>
+          <div className="contact-grid">
+            <a href="https://www.linkedin.com/in/hemanthboda2708" className="contact-card">
+              <span className="contact-icon">in</span>
+              <h3>LinkedIn</h3>
+              <p>Professional updates and VLSI posts</p>
+            </a>
 
-        <div className="footer-message">
-          <p className="glowing-text">Building the future of semiconductor design, one chip at a time.</p>
-        </div>
-      </section>
+            <a href="https://www.youtube.com/@HemanthBoda-2708" className="contact-card">
+              <span className="contact-icon">YT</span>
+              <h3>YouTube</h3>
+              <p>VLSI Learn With Fun explanations</p>
+            </a>
+
+            <a href="https://github.com/bodahemanth2708" className="contact-card">
+              <span className="contact-icon">GH</span>
+              <h3>GitHub</h3>
+              <p>Code, practice work, and projects</p>
+            </a>
+          </div>
+
+          <p className="footer-message">Building physical design discipline one block at a time.</p>
+        </section>
+      </main>
     </div>
   )
 }
